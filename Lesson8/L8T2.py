@@ -20,20 +20,14 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     global dom_schalt
     num = 0
 
-    if(lap_year(year2)):
-        dom = dom_schalt
-    else:
-        dom = dom_norml
+    dom = platzhalter(year2)
 
     # alle Tage des aktuellen Jahres werden zusammengerechnet
     num += day2 - 1
     for i in range(0, month2 - 1):
         num += dom[i]
 
-    if (lap_year(year1)):
-        dom = dom_schalt
-    else:
-        dom = dom_norml
+    dom = platzhalter(year1)
 
     # alle Tage des Startjahres werden zusammengerechnet
     num -= day1 - 1
@@ -49,6 +43,16 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
         year1 += 1
 
     return num
+
+
+def platzhalter(jahr):
+    global dom_norml
+    global dom_schalt
+
+    if (lap_year(jahr)):
+        return dom_schalt
+    else:
+        return dom_norml
 
 
 # lap_year entscheidet ob das jeweilige jahr ein schaltjahr ist
@@ -77,3 +81,4 @@ def test():
             print("Test case passed!")
 
 test()
+print(daysBetweenDates(1996,10,11, 2018,8,11))
