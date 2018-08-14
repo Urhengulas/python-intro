@@ -7,27 +7,35 @@
 def symmetric(liste):
     # Your code here
     if not liste:
-        return False
+        return True
+
     inv = invert(liste)
+
+    if not inv:
+        return False
+
     if len(liste) != len(inv):
         return False
+
     for i in range(len(liste)):
         if liste[i] != inv[i]:
             return False
     return True
 
 
+# 
 def invert(liste):
     hilf1 = []
     for i in range(len(liste)):
         hilf2 = []
         for j in liste:
-            try:
-                hilf2.append(j[i])
-            except:
+            if len(j) != len(liste):
                 return None
+            hilf2.append(j[i])
+
         hilf1.append(hilf2)
     return hilf1
+
 
 # a = [['cricket', 'football', 'tennis'], ['golf']]
 # b = invert(a)
@@ -38,24 +46,24 @@ print(symmetric([[1, 2, 3],
 # >>> True
 
 print(symmetric([["cat", "dog", "fish"],
-                ["dog", "dog", "fish"],
-                ["fish", "fish", "cat"]]))
+                 ["dog", "dog", "fish"],
+                 ["fish", "fish", "cat"]]))
 # >>> True
 
 print(symmetric([["cat", "dog", "fish"],
-                ["dog", "dog", "dog"],
-                ["fish","fish","cat"]]))
+                 ["dog", "dog", "dog"],
+                 ["fish", "fish", "cat"]]))
 # >>> False
 
 print(symmetric([[1, 2],
-                [2, 1]]))
+                 [2, 1]]))
 # >>> True
 
 print(symmetric([[1, 2, 3, 4],
-                [2, 3, 4, 5],
-                [3, 4, 5, 6]]))
+                 [2, 3, 4, 5],
+                 [3, 4, 5, 6]]))
 # >>> False
 
-print(symmetric([[1,2,3],
-                 [2,3,1]]))
+print(symmetric([[1, 2, 3],
+                 [2, 3, 1]]))
 # >>> False
